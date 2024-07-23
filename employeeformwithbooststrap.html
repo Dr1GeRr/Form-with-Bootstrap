@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration Form</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to the custom CSS file -->
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Employee Registration Form</h1>
+
+    <!-- Registration Form -->
+    <form id="employeeRegistrationForm" action="https://eou7mde5kibb72w.m.pipedream.net" method="post" onsubmit="return validateForm()">
+        <div class="form-group">
+            <label for="employee_id">Employee ID:</label>
+            <input type="text" class="form-control" id="employee_id" name="employee_id" required="required">
+            <div class="invalid-feedback">Employee ID must be numeric.</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required="required">
+            <div class="invalid-feedback">Name must not contain numbers.</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="department">Department:</label>
+            <input type="text" class="form-control" id="department" name="department" required="required">
+            <div class="invalid-feedback">Department must contain only letters.</div>
+        </div>
+        
+        <div class="form-group">
+            <label for="job_role">Job Role:</label>
+            <select class="form-control" id="job_role" name="job_role" required="required">
+                <option value="">Select</option>
+                <option value="developer">Developer</option>
+                <option value="designer">Designer</option>
+                <option value="manager">Manager</option>
+                <option value="analyst">Analyst</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="employment_type">Employment Type:</label>
+            <select class="form-control" id="employment_type" name="employment_type" required="required">
+                <option value="">Select</option>
+                <option value="full-time">Full-Time</option>
+                <option value="part-time">Part-Time</option>
+                <option value="contract">Contract</option>
+                <option value="intern">Intern</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select class="form-control" id="gender" name="gender" required="required">
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            <div class="invalid-feedback">Please select a gender.</div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+</div>
+
+<script>
+    function validateForm() {
+        // Get the input values
+        var employeeId = document.getElementById('employee_id').value;
+        var name = document.getElementById('name').value;
+        var department = document.getElementById('department').value;
+
+        // Regex patterns
+        var idPattern = /^\d+$/;
+        var namePattern = /^[a-zA-Z\s]+$/;
+        var departmentPattern = /^[a-zA-Z\s]+$/;
+
+        // Error elements
+        var employeeIdError = document.getElementById('employeeIdError');
+        var nameError = document.getElementById('nameError');
+        var departmentError = document.getElementById('departmentError');
+
+        // Reset error messages
+        employeeIdError.style.display = 'none';
+        nameError.style.display = 'none';
+        departmentError.style.display = 'none';
+
+        // Validation flag
+        var isValid = true;
+
+        // Validate employee ID
+        if (!idPattern.test(employeeId)) {
+            employeeIdError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Validate name
+        if (!namePattern.test(name)) {
+            nameError.style.display = 'block';
+            isValid = false;
+        }
+
+        // Validate department
+        if (!departmentPattern.test(department)) {
+            departmentError.style.display = 'block';
+            isValid = false;
+        }
+
+        return isValid;
+    }
+</script>
+</body>
+</html>
